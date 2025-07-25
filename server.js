@@ -7,10 +7,14 @@ app.use(express.static('public'))
 app.get('/api/bug/', (req, res) => bugService.query().then((bugs) => res.send(bugs)))
 
 app.get('/api/bug/save', (req, res) => {
-  const { title, _id } = req.query
+  const { title,_id,severity} = req.query
+  
+  console.log(req.query)
   const bugToSave = {
     _id,
     title,
+    severity,
+    createdAt:new Date()
   }
 
   bugService
@@ -23,6 +27,7 @@ app.get('/api/bug/save', (req, res) => {
 })
 
 app.get('/api/bug/:bugId', (req, res) => {
+    console.log(req.params)
   const bugId = req.params.bugId
   bugService
     .getById(bugId)

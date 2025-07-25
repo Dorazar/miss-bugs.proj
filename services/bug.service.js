@@ -27,7 +27,7 @@ function save(bugToSave) {
                 loggerService.error(`Couldnt find bug ${bugToSave._id} in bugService`)
                 return Promise.reject(`Couldnt save bug`)
             }
-    
+            bugToSave = {...bugs[idx],...bugToSave}
             bugs.splice(idx, 1, bugToSave)
         } else {
             bugToSave._id = makeId()
