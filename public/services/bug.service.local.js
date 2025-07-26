@@ -1,7 +1,12 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
+
+
 const STORAGE_KEY = 'bugs'
+
+
+
 
 _createBugs()
 
@@ -14,6 +19,7 @@ export const bugService = {
 }
 
 function query(filterBy) {
+    
     return storageService.query(STORAGE_KEY)
     .then(bugs => {
 

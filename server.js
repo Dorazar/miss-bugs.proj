@@ -1,19 +1,23 @@
 import express from 'express'
 import { json } from 'stream/consumers'
 import { bugService } from './services/bug.service.js'
+
+
+
 const app = express()
 app.use(express.static('public'))
 
 app.get('/api/bug/', (req, res) => bugService.query().then((bugs) => res.send(bugs)))
 
 app.get('/api/bug/save', (req, res) => {
-  const { title,_id,severity} = req.query
+  const { title,_id,severity,description} = req.query
   
   console.log(req.query)
   const bugToSave = {
     _id,
     title,
     severity,
+    description,
     createdAt:new Date()
   }
 
