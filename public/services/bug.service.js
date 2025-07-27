@@ -1,5 +1,4 @@
-import { utilService } from './util.service.js'
-import { storageService } from './async-storage.service.js'
+
 import axios from 'axios'
 
 const BASE_URL = '/api/bug'
@@ -37,13 +36,12 @@ function getById(bugId) {
 }
 
 function remove(bugId) {
-  return axios.get(`${BASE_URL}/${bugId}/remove`).then((res) => res.data)
+  return axios.get(`${BASE_URL}/${bugId}/remove`)
 }
 
 function save(bug) {
   var queryStr = `/save?description=${bug.description}&title=${bug.title}&severity=${bug.severity}`
   if (bug._id) queryStr += `&_id=${bug._id}`
-
   return axios.get(BASE_URL+queryStr).then(res => res.data)
 }
 

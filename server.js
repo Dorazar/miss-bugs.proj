@@ -16,8 +16,8 @@ app.get('/api/bug/save', (req, res) => {
   const bugToSave = {
     _id,
     title,
-    severity,
     description,
+    severity:+severity,
     createdAt:new Date()
   }
 
