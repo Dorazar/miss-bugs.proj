@@ -1,12 +1,12 @@
 import express from 'express'
-import { json } from 'stream/consumers'
-import { bugService } from './services/bug.service.backend.js'
 
+import { bugService } from './services/bug.service.backend.js'
+import cookieParser from 'cookie-parser'
 
 
 const app = express()
 app.use(express.static('public'))
-
+app.use(cookieParser())
 app.get('/api/bug/', (req, res) => bugService.query().then((bugs) => res.send(bugs)))
 
 app.get('/api/bug/save', (req, res) => {
@@ -31,8 +31,21 @@ app.get('/api/bug/save', (req, res) => {
 })
 
 app.get('/api/bug/:bugId', (req, res) => {
-    console.log(req.params)
+
   const bugId = req.params.bugId
+
+const cookie = req.cookies.visitedBugs || '[]' 
+const visitedBugs = JSON.parse(cookie)
+
+if (!visitedBugs.includes(bugId) && visitedBugs.length<3) {
+  visitedBugs.push(bugId)
+}
+
+const visitedBugsJson = JSON.stringify(visitedBugs)
+res.cookie('visitedBugs', visitedBugsJson, { maxAge: 7000 })
+
+
+
   bugService
     .getById(bugId)
     .then((bug) => res.send(bug))
