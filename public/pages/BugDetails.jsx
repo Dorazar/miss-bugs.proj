@@ -1,15 +1,20 @@
 const { useState, useEffect } = React
 const { Link, useParams } = ReactRouterDOM
 
-import { bugService } from '../services/bug.service.js'
+
+
+import { bugService } from '../services/bug.service.frontend.js'
+import {getCookie} from '../services/util.service.js'
 import { showErrorMsg } from '../services/event-bus.service.js'
 
 export function BugDetails() {
-
+    
+     const a = getCookie('aaa')
     const [bug, setBug] = useState(null)
     const { bugId } = useParams()
 
     useEffect(() => {
+
         bugService.getById(bugId)
             .then(bug => setBug(bug))
             .catch(err => showErrorMsg(`Cannot load bug`, err))

@@ -66,3 +66,26 @@ export function makeId(length = 5) {
     }
     return text
 }
+
+
+export function debounce(func, wait) {
+    let timeoutId
+    return (...args) => {
+        clearTimeout(timeoutId)
+        timeoutId = setTimeout(() => {
+            func(...args)
+        }, wait)
+    }
+}
+
+export function throttle(func, wait) {
+    let isWaiting = false
+    return (...args) => {
+        if (isWaiting) return
+        func(...args)
+        isWaiting = true
+        setTimeout(() => {
+            isWaiting = false
+        }, wait)
+    }
+}
