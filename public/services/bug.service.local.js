@@ -1,12 +1,7 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
-
-
 const STORAGE_KEY = 'bugs'
-
-
-
 
 _createBugs()
 
@@ -55,7 +50,6 @@ function save(bug) {
 function _createBugs() {
     let bugs = utilService.loadFromStorage(STORAGE_KEY)
     if (bugs && bugs.length > 0) return 
-
     bugs = [
         {
             title: "Infinite Loop Detected",
