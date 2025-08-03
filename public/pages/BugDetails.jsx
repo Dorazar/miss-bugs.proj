@@ -6,23 +6,19 @@ import { getCookie } from '../services/util.service.js'
 import { showErrorMsg } from '../services/event-bus.service.js'
 
 export function BugDetails() {
-  const raw = getCookie('visitedBugs')
-  const decode = decodeURIComponent(raw)
-
-  const visitedBugs = JSON.parse(decode) || []
-  console.log(visitedBugs)
+  
 
   const [bug, setBug] = useState(null)
   const { bugId } = useParams()
 
   useEffect(() => {
-    if (visitedBugs.length < 3) {
+    
       bugService
         .getById(bugId)
         .then((bug) => setBug(bug))
         .catch((err) => showErrorMsg(`Cannot load bug`, err))
     }
-  }, [])
+  , [])
 
   return (
     <div className="bug-details">
