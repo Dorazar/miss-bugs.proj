@@ -6,7 +6,7 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
 
     useEffect(() => {
         onSetFilterBy(filterByToEdit)
-        console.log(filterByToEdit)
+        // console.log(filterByToEdit)
     }, [filterByToEdit])
 
     function handleChange({ target }) {

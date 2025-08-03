@@ -8,7 +8,7 @@ export function BugList({ bugs, onRemoveBug, onEditBug }) {
     const [cookie,setCookie] = useState(getCookie('visitedBugs'))    
 
 
-  console.log(cookie)
+  
   const decode = decodeURIComponent(cookie)
   const visitedBugs = JSON.parse(decode) || []
  

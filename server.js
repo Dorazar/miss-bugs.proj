@@ -8,24 +8,35 @@ app.use(express.static('public'))
 app.use(cookieParser())
 app.use(express.json())
 
-app.get('/api/bug/', (req, res) => {
+app.get('/api/bug', (req, res) => {
   const filterBy = {
     txt: req.query.txt,
     minSeverity: +req.query.minSeverity,
     labels:req.query.labels
   }
-  bugService.query(filterBy).then((bugs) => res.send(bugs))
+
+ const sort = {
+  sortBy:req.query.sortBy 
+ }
+  
+  
+
+
+   
+  bugService.query(filterBy,sort).then((bugs) => res.send(bugs))
 })
 
-app.get('/api/bug/save', (req, res) => {
-  const { title, _id, severity, description } = req.query
+
+// create / edit
+
+app.post('/api/bug', (req, res) => {
 
   console.log(req.query)
   const bugToSave = {
-    _id,
-    title,
-    description,
-    severity: +severity,
+    _id:req.query._id,
+    title:req.query.title,
+    description:req.query.description,
+    severity: +req.query.severity,
     createdAt: new Date(),
   }
 

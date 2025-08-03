@@ -10,8 +10,8 @@ export const bugService = {
   getDefaultFilter,
 }
 
-function query(filterBy = {}) {
-  return axios.get(BASE_URL, { params: filterBy })
+function query(filterBy={}) {
+  return axios.get(BASE_URL, { params: filterBy})
   .then((res) => res.data)
 }
 
