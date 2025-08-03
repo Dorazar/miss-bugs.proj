@@ -17,10 +17,21 @@ function query(filterBy={}) {
         const regExp = new RegExp(filterBy.txt, 'i')
         bugsToDisplay = bugsToDisplay.filter((bug) => regExp.test(bug.title))
       }
-      
+
       if (filterBy.minSeverity) {
         bugsToDisplay = bugsToDisplay.filter((bug) => bug.severity >= filterBy.minSeverity)
       }
+
+      if (filterBy.labels) {
+
+           const regExp = new RegExp(filterBy.labels, 'i')
+        bugsToDisplay = bugsToDisplay.filter((bug) => regExp.test(bug.labels))
+
+        
+      }
+
+      console.log(bugsToDisplay)
+
     
       return Promise.resolve(bugsToDisplay)
 }

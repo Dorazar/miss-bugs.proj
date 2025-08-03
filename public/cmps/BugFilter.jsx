@@ -35,7 +35,7 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
         onSetFilterBy(filterByToEdit)
     }
 
-    const { txt, minSeverity } = filterByToEdit
+    const { txt, minSeverity, labels } = filterByToEdit
     return (
         <section className="bug-filter">
             <h2>Filter</h2>
@@ -45,6 +45,9 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
 
                 <label htmlFor="minSeverity">Min Severity: </label>
                 <input value={minSeverity} onChange={handleChange} type="number" placeholder="By Min Severity" id="minSeverity" name="minSeverity" />
+
+                <label htmlFor="labels">Labels: </label>
+                <input value={labels} onChange={handleChange} type="text" placeholder="By Labels" id="labels" name="labels" />
             </form>
         </section>
     )
