@@ -8,6 +8,7 @@ export const bugService = {
   getById,
   remove,
   save,
+  getEmptyBug
 }
 
 function query(filterBy={},sort={}) {
@@ -70,15 +71,27 @@ function getById(bugId) {
 }
 
 function remove(bugId) {
+  console.log(bugId)
   const bug = bugs.find((bug) => bug._id === bugId)
   if (!bug) {
     loggerService.error(`Couldnt find bug ${bugId} in bugService`)
     return Promise.reject(`Couldnt get bug`)
   }
-  bugs.splice(bugId, 1)
+  bugs.splice(bug, 1)
   _saveBugs()
   return Promise.resolve(bug)
 }
 function _saveBugs() {
   return writeJsonFile('./data/bug.json', bugs)
+}
+
+
+function getEmptyBug({title,description,severity,labels}) {
+  return {
+    title: title || '',
+    description:description || '',
+    severity:severity || '',
+    createdAt :  new Date().getTime(),
+    labels:labels || []
+  }
 }

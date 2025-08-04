@@ -8,6 +8,7 @@ app.use(express.static('public'))
 app.use(cookieParser())
 app.use(express.json())
 
+
 app.get('/api/bug', (req, res) => {
   const filterBy = {
     txt: req.query.txt,
@@ -17,28 +18,49 @@ app.get('/api/bug', (req, res) => {
 
  const sort = {
   sortBy:req.query.sortBy,
-  sortDir:req.query.sortDir || -1
+  sortDir:req.query.sortDir 
  }
-  
-  
-
-    console.log(sort)
+  console.log(sort)
    
   bugService.query(filterBy,sort).then((bugs) => res.send(bugs))
 })
-
 
 // create / edit
 
 app.post('/api/bug', (req, res) => {
 
-  console.log(req.query)
+  console.log(req.body)
   const bugToSave = {
-    _id:req.query._id,
-    title:req.query.title,
-    description:req.query.description,
-    severity: +req.query.severity,
+    title:req.body.title,
+    description:req.body.description,
+    severity: +req.body.severity,
     createdAt: new Date().getTime(),
+    labels:req.body.labels
+  }
+
+  const bug= bugService.getEmptyBug(req.body)
+
+
+
+  bugService
+    .save(bug)
+    .then((savedBug) => res.send(savedBug))
+    .catch((err) => {
+      loggerService.error(err)
+      res.status(400).send(err)
+    })
+})
+
+
+app.put('/api/bug',(req,res) => {
+  console.log(req.body)
+  const bugToSave = {
+    _id:req.body._id,
+    title:req.body.title,
+    description:req.body.description,
+    severity: +req.body.severity,
+    createdAt: new Date().getTime(),
+    labels:req.body.labels
   }
 
   bugService
@@ -48,6 +70,8 @@ app.post('/api/bug', (req, res) => {
       loggerService.error(err)
       res.status(400).send(err)
     })
+
+
 })
 
 app.get('/api/bug/:bugId', (req, res) => {
@@ -72,11 +96,12 @@ app.get('/api/bug/:bugId', (req, res) => {
     })
 })
 
-app.get('/api/bug/:bugId/remove', (req, res) => {
+app.delete('/api/bug/:bugId', (req, res) => {
   const bugId = req.params.bugId
+  console.log(bugId)
   bugService
     .remove(bugId)
-    .then((bug) => res.send(bug))
+    .then((bug) => {res.send(bug)})
     .catch((err) => {
       loggerService.error(err)
       res.status(400).send(err)
