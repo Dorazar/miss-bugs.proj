@@ -11,7 +11,7 @@ export const bugService = {
   getEmptyBug
 }
 
-function query(filterBy={},sort={}) {
+function query(filterBy={},sort={},page={}) {
   let bugsToDisplay = bugs
 
      if (filterBy.txt) {
@@ -37,6 +37,24 @@ function query(filterBy={},sort={}) {
        if (sort.sortBy==='createdAt') {
         bugsToDisplay=bugsToDisplay.sort((a, b) => (a.createdAt-b.createdAt)* sort.sortDir);
       }
+
+
+    
+
+    let BUGS_PER_PAGE = 4
+    let totalPages = Math.ceil(bugsToDisplay.length / BUGS_PER_PAGE)
+
+    if (page.pageIdx<0) page.pageIdx = totalPages-1
+    if (page.pageIdx>=totalPages) page.pageIdx  = 0 
+
+    let startIndex = page.pageIdx*BUGS_PER_PAGE
+    const endIndex = startIndex+BUGS_PER_PAGE
+
+   
+
+    bugsToDisplay=bugsToDisplay.slice(startIndex,endIndex)
+
+
 
   
 

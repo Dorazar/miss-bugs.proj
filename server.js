@@ -20,9 +20,13 @@ app.get('/api/bug', (req, res) => {
   sortBy:req.query.sortBy,
   sortDir:req.query.sortDir 
  }
-  console.log(sort)
+
+
+const page =  {
+  pageIdx:+req.query.pageIdx || 0
+}
    
-  bugService.query(filterBy,sort).then((bugs) => res.send(bugs))
+  bugService.query(filterBy,sort,page).then((bugs) => res.send(bugs))
 })
 
 // create / edit
