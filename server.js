@@ -16,12 +16,13 @@ app.get('/api/bug', (req, res) => {
   }
 
  const sort = {
-  sortBy:req.query.sortBy 
+  sortBy:req.query.sortBy,
+  sortDir:req.query.sortDir || -1
  }
   
   
 
-
+    console.log(sort)
    
   bugService.query(filterBy,sort).then((bugs) => res.send(bugs))
 })
@@ -37,7 +38,7 @@ app.post('/api/bug', (req, res) => {
     title:req.query.title,
     description:req.query.description,
     severity: +req.query.severity,
-    createdAt: new Date(),
+    createdAt: new Date().getTime(),
   }
 
   bugService

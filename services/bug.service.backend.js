@@ -26,16 +26,19 @@ function query(filterBy={},sort={}) {
 
       }
       if (sort.sortBy==='title') {
-        bugsToDisplay=bugsToDisplay.sort((a, b) => a.title.localeCompare(b.title));
+        bugsToDisplay=bugsToDisplay.sort((a, b) => a.title.localeCompare(b.title) * sort.sortDir);
       }
 
        if (sort.sortBy==='severity') {
-        bugsToDisplay=bugsToDisplay.sort((a, b) => a.severity-b.severity);
+        bugsToDisplay=bugsToDisplay.sort((a, b) => (a.severity-b.severity)* sort.sortDir);
       }
 
+       if (sort.sortBy==='createdAt') {
+        bugsToDisplay=bugsToDisplay.sort((a, b) => (a.createdAt-b.createdAt)* sort.sortDir);
+      }
 
+  
 
-      
       return Promise.resolve(bugsToDisplay)
 }
 
