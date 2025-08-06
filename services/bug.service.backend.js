@@ -41,18 +41,18 @@ function query(filterBy={},sort={},page={}) {
 
     
 
-    let BUGS_PER_PAGE = 4
-    let totalPages = Math.ceil(bugsToDisplay.length / BUGS_PER_PAGE)
+    // let BUGS_PER_PAGE = 4
+    // let totalPages = Math.ceil(bugsToDisplay.length / BUGS_PER_PAGE)
 
-    if (page.pageIdx<0) page.pageIdx = totalPages-1
-    if (page.pageIdx>=totalPages) page.pageIdx  = 0 
+    // if (page.pageIdx<0) page.pageIdx = totalPages-1
+    // if (page.pageIdx>=totalPages) page.pageIdx  = 0 
 
-    let startIndex = page.pageIdx*BUGS_PER_PAGE
-    const endIndex = startIndex+BUGS_PER_PAGE
+    // let startIndex = page.pageIdx*BUGS_PER_PAGE
+    // const endIndex = startIndex+BUGS_PER_PAGE
 
    
 
-    bugsToDisplay=bugsToDisplay.slice(startIndex,endIndex)
+    // bugsToDisplay=bugsToDisplay.slice(startIndex,endIndex)
 
 
 
@@ -75,6 +75,7 @@ function save(bugToSave) {
     bugToSave._id = makeId()
     bugs.push(bugToSave)
   }
+  console.log('bug was save')
   return _saveBugs().then(() => bugToSave)
 }
 
@@ -89,7 +90,7 @@ function getById(bugId) {
 }
 
 function remove(bugId) {
-  console.log(bugId)
+
   const bug = bugs.find((bug) => bug._id === bugId)
   if (!bug) {
     loggerService.error(`Couldnt find bug ${bugId} in bugService`)

@@ -1,104 +1,44 @@
 [
   {
-    "_id": "Vmkoz1",
+    "_id": "abc456",
+    "title": "Cannot save a new bug",
+    "description": "problem when clicking Save",
+    "severity": 50,
+    "createdAt": 1754483265838,
+    "labels": [
+      "critical",
+      "need-CR",
+      "dev-branch"
+    ]
+  },
+  {
+    "_id": "OWqnI",
+    "title": "Bug 1753630154186",
+    "description": "daa",
+    "severity": 0,
+    "createdAt": 1542107359454,
+    "labels": [
+      "dev-branch"
+    ]
+  },
+  {
+    "_id": "Vmkoz",
     "title": "Bug 1753896288351",
-    "description": "hello",
-    "severity": 4,
-    "createdAt": 1754310799222,
+    "description": "6565465",
+    "severity": 3,
+    "createdAt": 1542107359454,
     "labels": [
       "need-CR"
     ]
   },
   {
-    "_id": "abc1232",
-    "title": "edited this line",
-    "severity": null,
-    "createdAt": 1754309506612
-  },
-  {
-    "title": "test-post2",
+    "_id": "abc123",
+    "title": "Cannot save a new car",
     "description": "problem when clicking Save",
     "severity": 3,
-    "createdAt": 1754312557020,
+    "createdAt": 1542107359454,
     "labels": [
       "critical"
-    ],
-    "_id": "SvjNx"
-  },
-  {
-    "title": "test-post3",
-    "description": "desc",
-    "severity": "",
-    "createdAt": 1754312589801,
-    "labels": [
-      "aaa"
-    ],
-    "_id": "pO0ow"
-  }
-  ,
-  {
-    "title": "test-post4",
-    "description": "desc",
-    "severity": "",
-    "createdAt": 1754312589801,
-    "labels": [
-      "aaa"
-    ],
-    "_id": "pO0ow"
-  }
-  ,
-  {
-    "title": "test-post5",
-    "description": "desc",
-    "severity": "",
-    "createdAt": 1754312589801,
-    "labels": [
-      "aaa"
-    ],
-    "_id": "pO0ow"
-  }
-  ,
-  {
-    "title": "test-post6",
-    "description": "desc",
-    "severity": "",
-    "createdAt": 1754312589801,
-    "labels": [
-      "aaa"
-    ],
-    "_id": "pO0ow"
-  }
-  ,
-  {
-    "title": "test-post7",
-    "description": "desc",
-    "severity": "",
-    "createdAt": 1754312589801,
-    "labels": [
-      "aaa"
-    ],
-    "_id": "pO0ow"
-  }
-  ,
-  {
-    "title": "test-post8",
-    "description": "desc",
-    "severity": "",
-    "createdAt": 1754312589801,
-    "labels": [
-      "aaa"
-    ],
-    "_id": "pO0ow"
-  }
-  ,
-  {
-    "title": "test-post9",
-    "description": "desc",
-    "severity": "",
-    "createdAt": 1754312589801,
-    "labels": [
-      "aaa"
-    ],
-    "_id": "pO0ow"
+    ]
   }
 ]

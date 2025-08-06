@@ -57,7 +57,7 @@ app.post('/api/bug', (req, res) => {
 
 
 app.put('/api/bug',(req,res) => {
-  console.log(req.body)
+  
   const bugToSave = {
     _id:req.body._id,
     title:req.body.title,
