@@ -8,6 +8,7 @@ export const userService = {
   query,
   getById,
   remove,
+  getByUsername
 }
 
 function query() {
@@ -65,3 +66,17 @@ function _isUserExist(searchUser) {
 function _saveUsers() {
   return writeJsonFile('./data/user.json', users)
 }
+
+
+function getByUsername(username) {
+   const user =  users.find(user=> user.username===username)
+
+   if (user) {
+     return Promise.resolve(user)
+   }
+   else {
+    return Promise.reject('User not exists!')
+   }
+  
+}   
+   
