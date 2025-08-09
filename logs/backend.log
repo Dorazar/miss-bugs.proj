@@ -1,1 +1,14 @@
 3.8.2025, 21:33:08 - DEBUG - {"sortBy":"title","sortDir":1}
+9.8.2025, 12:42:39 - ERROR - Couldnt find bug u108 in bugService
+9.8.2025, 12:42:39 - ERROR - Couldnt get bug
+9.8.2025, 12:43:25 - ERROR - Couldnt find user u108 in userService
+9.8.2025, 12:43:25 - ERROR - Couldnt get user
+9.8.2025, 13:10:19 - ERROR - Couldnt find bug u101 in bugService
+9.8.2025, 13:10:20 - ERROR - Couldnt get bug
+9.8.2025, 13:10:51 - ERROR - Couldnt find bug u101 in bugService
+9.8.2025, 13:10:51 - ERROR - Couldnt get bug
+9.8.2025, 13:12:04 - ERROR - Couldnt find bug u101 in bugService
+9.8.2025, 13:12:04 - ERROR - Couldnt get bug
+9.8.2025, 14:06:17 - ERROR - User Exists!
+9.8.2025, 14:10:56 - ERROR - User Exists!
+9.8.2025, 14:13:41 - ERROR - User Exists!

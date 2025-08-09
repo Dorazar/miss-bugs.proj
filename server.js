@@ -1,7 +1,9 @@
 import express from 'express'
 
 import { bugService } from './services/bug.service.backend.js'
+import {userService} from './services/user.service.backend.js'
 import cookieParser from 'cookie-parser'
+import { loggerService } from './services/logger.service.js'
 
 const app = express()
 app.use(express.static('public'))
@@ -110,6 +112,53 @@ app.delete('/api/bug/:bugId', (req, res) => {
       loggerService.error(err)
       res.status(400).send(err)
     })
+})
+
+
+
+// USERS API
+
+app.get('/api/user/',(req,res) => {
+userService.query().then(users => res.send(users))
+})
+
+app.get('/api/user/:userId',(req,res) => {
+const userId = req.params.userId
+userService.getById(userId).then(users => res.send(users))
+.catch((err) => {
+      loggerService.error(err)
+      res.status(400).send(err)
+    })
+})
+
+app.delete('/api/user/:userId',(req,res)=> {
+  let userId = req.params.userId
+
+  userService.remove(userId).then((user => res.send(user)))
+  .catch((err)=> {
+     loggerService.error(err)
+     res.status(400).send(err)
+  }
+)
+})
+
+// USER ADD
+
+app.post('/api/user',(req,res) => {
+  
+  const user = {
+    username:req.body.username,
+    fullname:req.body.fullname,
+    password:req.body.password,
+    isAdmin:req.body.isAdmin,
+  }
+
+  userService.add(user).then(user => res.send(user))
+  .catch((err)=> {
+      loggerService.error(err)
+     res.status(400).send(err)
+  })
+
 })
 
 app.listen(3030, () => console.log('Server ready at http://10.100.102.4:3030'))
