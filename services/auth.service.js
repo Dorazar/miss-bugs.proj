@@ -27,13 +27,8 @@ function checkLogin({username,password}) {
 }
 
 function getLoginToken(user) {
-    const loginToker =  cryptr.encrypt(JSON.stringify(user))
-    if (loginToker) {
-        return Promise.resolve(loginToker)
-    }
-    else {
-        return Promise.reject(loginToker)
-    }
+   return cryptr.encrypt(JSON.stringify(user))
+  
 }
 
 function validateToken(loginToken) {

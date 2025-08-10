@@ -12,6 +12,8 @@ app.use(cookieParser())
 app.use(express.json())
 
 app.get('/api/bug', (req, res) => {
+
+
   const filterBy = {
     txt: req.query.txt,
     minSeverity: +req.query.minSeverity,
@@ -32,25 +34,21 @@ app.get('/api/bug', (req, res) => {
 
 // create / edit
 
-app.post('/api/bug', (req, res) => {
-  console.log(req.body)
-  const bugToSave = {
-    title: req.body.title,
-    description: req.body.description,
-    severity: +req.body.severity,
-    createdAt: new Date().getTime(),
-    labels: req.body.labels,
-  }
+app.post('/api/bug/', (req, res) => {
 
+  const loggedinUser = authService.validateToken(req.cookies.loginToken)
   const bug = bugService.getEmptyBug(req.body)
 
-  bugService
-    .save(bug)
+      bugService
+    .save(bug,loggedinUser)
     .then((savedBug) => res.send(savedBug))
     .catch((err) => {
       loggerService.error(err)
       res.status(400).send(err)
     })
+
+
+
 })
 
 app.put('/api/bug', (req, res) => {
@@ -126,8 +124,6 @@ app.get('/api/user/:userId', (req, res) => {
 })
 
 app.delete('/api/user/:userId', (req, res) => {
-  const loggedinUser = authService.validateToken(req.cookies.loginToken)
-  if (!loggedinUser) return res.status(401).send('cannot delete bug')
   let userId = req.params.userId
 
   userService
@@ -163,23 +159,13 @@ app.post('/api/user', (req, res) => {
 app.post('/api/auth/login', (req, res) => {
   const credentials = req.body
   console.log(credentials)
-
-
-  
   authService
     .checkLogin(credentials)
     .then((user) => {
       if (user) {
-        const loginToken = authService
-          .getLoginToken(user)
-          .then(() => {
+        const loginToken = authService.getLoginToken(user)
             res.cookie('loginToken', loginToken)
             res.send(user)
-          })
-          .catch((err) => {
-            loggerService.error(err)
-            res.status(400).send(err)
-          })
       }
     })
     .catch((err) => {

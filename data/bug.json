@@ -1,30 +1,17 @@
 [
   {
-    "_id": "abc456",
-    "title": "Cannot save a new bug",
-    "description": "problem when clicking Save",
-    "severity": 0,
-    "createdAt": 1542107359454,
-    "labels": ["critical", "need-CR", "dev-branch"],
-    "creator": { "_id": "u101", "fullname": "Puki Ja" }
-  },
-  {
-    "_id": "OWqnI",
-    "title": "Bug 1753630154186",
-    "description": "daa",
-    "severity": 0,
-    "createdAt": 1542107359454,
-    "labels": ["dev-branch"],
-    "creator": { "_id": "u101", "fullname": "Puki Ja" }
-  },
-  {
     "_id": "Vmkoz",
     "title": "Bug 1753896288351",
     "description": "6565465",
     "severity": 3,
     "createdAt": 1542107359454,
-    "labels": ["need-CR"],
-    "creator": { "_id": "u102", "fullname": "Muki Ma" }
+    "labels": [
+      "need-CR"
+    ],
+    "creator": {
+      "_id": "u102",
+      "fullname": "Muki Ma"
+    }
   },
   {
     "_id": "abc123",
@@ -32,7 +19,121 @@
     "description": "problem when clicking Save",
     "severity": 3,
     "createdAt": 1542107359454,
-    "labels": ["critical"],
-    "creator": { "_id": "u103", "fullname": "Spuki Pu" }
+    "labels": [
+      "critical"
+    ],
+    "creator": {
+      "_id": "u103",
+      "fullname": "Spuki Pu"
+    }
+  },
+  {
+    "title": "Cannot save a new car",
+    "description": "problem when clicking Save",
+    "severity": 3,
+    "createdAt": 1754756951398,
+    "labels": [
+      "critical"
+    ],
+    "creator": {
+      "_id": "u103",
+      "fullname": "Spuki Pu"
+    }
+  },
+  {
+    "title": "Bug 1754757307821",
+    "description": "",
+    "severity": 3,
+    "createdAt": 1754757309959,
+    "labels": [],
+    "creator": {
+      "_id": "u103",
+      "fullname": "Spuki Pu"
+    }
+  },
+  {
+    "title": "Cannot save a new car",
+    "description": "problem when clicking Save",
+    "severity": 3,
+    "createdAt": 1754822581849,
+    "labels": [
+      "critical"
+    ],
+    "creator": {
+      "_id": "u102",
+      "fullname": "Spuki Pu"
+    },
+    "_id": "5Ta40"
+  },
+  {
+    "title": "Cannot save a new car",
+    "description": "problem when clicking Save",
+    "severity": 3,
+    "createdAt": 1754826369792,
+    "labels": [
+      "critical"
+    ],
+    "creator": {
+      "_id": "u102",
+      "fullname": "Spuki Pu"
+    },
+    "_id": "Ewbim"
+  },
+  {
+    "title": "Cannot save a new car",
+    "description": "problem when clicking Save",
+    "severity": 3,
+    "createdAt": 1754826408228,
+    "labels": [
+      "critical"
+    ],
+    "creator": {
+      "_id": "u102",
+      "fullname": "Spuki Pu"
+    },
+    "_id": "zFll8"
+  },
+  {
+    "title": "Cannot save a new car",
+    "description": "problem when clicking Save",
+    "severity": 3,
+    "createdAt": 1754826412364,
+    "labels": [
+      "critical"
+    ],
+    "creator": {
+      "_id": "u102",
+      "fullname": "Spuki Pu"
+    },
+    "_id": "kH4VS"
+  },
+  {
+    "title": "Cannot save a new car",
+    "description": "problem when clicking Save",
+    "severity": 3,
+    "createdAt": 1754826439234,
+    "labels": [
+      "critical"
+    ],
+    "creator": {
+      "_id": "u102",
+      "fullname": "Spuki Pu"
+    },
+    "_id": "PdhBa"
+  },
+  {
+    "title": "Cannot save a new car",
+    "description": "problem when clicking Save",
+    "severity": 3,
+    "createdAt": 1754835606740,
+    "labels": [
+      "critical"
+    ],
+    "_id": "L00V8",
+    "creator": {
+      "_id": "u101",
+      "username": "puki",
+      "fullname": "Puki Ja"
+    }
   }
 ]

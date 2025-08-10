@@ -61,7 +61,7 @@ function query(filterBy={},sort={},page={}) {
       return Promise.resolve(bugsToDisplay)
 }
 
-function save(bugToSave) {
+function save(bugToSave,loggedinUser) {
   if (bugToSave._id) {
     const idx = bugs.findIndex((bug) => bug._id === bugToSave._id)
 
@@ -73,6 +73,7 @@ function save(bugToSave) {
     bugs.splice(idx, 1, bugToSave)
   } else {
     bugToSave._id = makeId()
+    bugToSave.creator=loggedinUser
     bugs.push(bugToSave)
   }
   console.log('bug was save')
@@ -111,6 +112,6 @@ function getEmptyBug({title,description,severity,labels}) {
     description:description || '',
     severity:severity || '',
     createdAt :  new Date().getTime(),
-    labels:labels || []
+    labels:labels || [], 
   }
 }
