@@ -61,10 +61,11 @@ app.put('/api/bug', (req, res) => {
     severity: +req.body.severity,
     createdAt: new Date().getTime(),
     labels: req.body.labels,
+    creator:req.body.creator
   }
 
   bugService
-    .save(bugToSave)
+    .save(bugToSave,loggedinUser)
     .then((savedBug) => res.send(savedBug))
     .catch((err) => {
       loggerService.error(err)

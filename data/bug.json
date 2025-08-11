@@ -11,9 +11,8 @@
     "creator": {
       "_id": "u102",
       "fullname": "Muki Ma",
-      "username":"muki",
-       "isAdmin": false
-      
+      "username": "muki",
+      "isAdmin": false
     }
   },
   {
@@ -28,12 +27,12 @@
     "creator": {
       "_id": "u103",
       "fullname": "Spuki Pu",
-      "username":"spuki",
-       "isAdmin": false
+      "username": "spuki",
+      "isAdmin": false
     }
   },
   {
-    "_id":"acs2",
+    "_id": "acs2",
     "title": "Cannot save a new car",
     "description": "problem when clicking Save",
     "severity": 3,
@@ -44,32 +43,31 @@
     "creator": {
       "_id": "u103",
       "fullname": "Spuki Pu",
-      "username":"spuki",
-       "isAdmin": false
+      "username": "spuki",
+      "isAdmin": false
     }
   },
-  { 
-    "_id":"mazs23",
+  {
+    "_id": "mazs23",
     "title": "Bug 1754757307821",
     "description": "",
     "severity": 3,
     "createdAt": 1754757309959,
     "labels": [],
-   "creator": {
+    "creator": {
       "_id": "u103",
       "fullname": "Spuki Pu",
-      "username":"spuki",
-       "isAdmin": false
+      "username": "spuki",
+      "isAdmin": false
     }
-  }
-,
+  },
   {
     "title": "test-post3",
     "description": "desc",
     "severity": 3,
-    "createdAt": 1754893827494,
+    "createdAt": 1754910222728,
     "labels": [
-      "critical",
+      "crit",
       "important"
     ],
     "_id": "hhTIJ",

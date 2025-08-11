@@ -64,6 +64,7 @@ function query(filterBy={},sort={},page={}) {
 
 function save(bugToSave,loggedinUser) {
   console.log('loggedinUser:',loggedinUser)
+  console.log(bugToSave)
   if (bugToSave._id) {
     const idx = bugs.findIndex((bug) => bug._id === bugToSave._id)
 
@@ -71,6 +72,13 @@ function save(bugToSave,loggedinUser) {
       loggerService.error(`Couldnt find bug ${bugToSave._id} in bugService`)
       return Promise.reject(`Couldnt save bug`)
     }
+
+    if(bugToSave.creator._id!==loggedinUser._id){
+     
+      loggerService.error(`Cannot update others bugs`)
+      return Promise.reject(`Couldnt save bug`)
+    }
+
     bugToSave = { ...bugs[idx], ...bugToSave}
     bugs.splice(idx, 1, bugToSave)
   } else {
