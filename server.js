@@ -5,6 +5,7 @@ import { userService } from './services/user.service.backend.js'
 import cookieParser from 'cookie-parser'
 import { loggerService } from './services/logger.service.js'
 import { authService } from './services/auth.service.js'
+import  path  from 'path'
 
 const app = express()
 app.use(express.static('public'))
@@ -13,9 +14,9 @@ app.use(express.json())
 
 app.get('/api/bug', (req, res) => {
   const filterBy = {
-    txt: req.query.txt,
-    minSeverity: +req.query.minSeverity,
-    labels: req.query.labels,
+    txt: req.query.txt|| '',
+    minSeverity: +req.query.minSeverity||'',
+    labels: req.query.labels||'',
   }
 
   const sort = {
@@ -161,6 +162,8 @@ app.post('/api/user', (req, res) => {
 })
 
 //======================================= AUTH API==========================
+
+
 // login
 app.post('/api/auth/login', (req, res) => {
   const credentials = req.body
@@ -203,4 +206,7 @@ app.post('/api/auth/logout', (req, res) => {
   res.send('logged-out!')
 })
 
+app.get('/*all',(req,res)=>{
+  res.sendFile(path.resolve('public/index.html'))
+})
 app.listen(3030, () => console.log('Server ready at http://10.100.102.4:3030'))

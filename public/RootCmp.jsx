@@ -1,4 +1,4 @@
-const Router = ReactRouterDOM.HashRouter
+const Router = ReactRouterDOM.BrowserRouter
 const { Route, Routes } = ReactRouterDOM
 
 import { UserMsg } from './cmps/UserMsg.jsx'
@@ -8,6 +8,7 @@ import { Home } from './pages/Home.jsx'
 import { BugIndex } from './pages/BugIndex.jsx'
 import { BugDetails } from './pages/BugDetails.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
+import { LoginSignup } from './cmps/LoginSignup.jsx'
 
 export function App() {
     return <Router>
@@ -19,6 +20,7 @@ export function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/bug" element={<BugIndex />} />
                     <Route path="/bug/:bugId" element={<BugDetails />} />
+                    <Route path="/auth" element={<LoginSignup />} />
                     <Route path="/about" element={<AboutUs />} />
                 </Routes>
             </main>
