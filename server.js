@@ -12,8 +12,6 @@ app.use(cookieParser())
 app.use(express.json())
 
 app.get('/api/bug', (req, res) => {
-
-
   const filterBy = {
     txt: req.query.txt,
     minSeverity: +req.query.minSeverity,
@@ -35,23 +33,27 @@ app.get('/api/bug', (req, res) => {
 // create / edit
 
 app.post('/api/bug/', (req, res) => {
-
   const loggedinUser = authService.validateToken(req.cookies.loginToken)
+  if (!loggedinUser) return res.status(401).send('cannot add car')
   const bug = bugService.getEmptyBug(req.body)
 
-      bugService
-    .save(bug,loggedinUser)
-    .then((savedBug) => res.send(savedBug))
+  bugService.save(bug, loggedinUser)
+    .then((savedBug) => 
+      res.send({
+        _id:savedBug.creator._id,
+        fullname:savedBug.creator.fullname,
+        isAdmin:savedBug.creator.isAdmin
+      }))
     .catch((err) => {
       loggerService.error(err)
       res.status(400).send(err)
     })
-
-
-
 })
 
 app.put('/api/bug', (req, res) => {
+  const loggedinUser = authService.validateToken(req.cookies.loginToken)
+  if (!loggedinUser) return res.status(401).send('cannot edit car')
+
   const bugToSave = {
     _id: req.body._id,
     title: req.body.title,
@@ -93,10 +95,13 @@ app.get('/api/bug/:bugId', (req, res) => {
 })
 
 app.delete('/api/bug/:bugId', (req, res) => {
+   const loggedinUser = authService.validateToken(req.cookies.loginToken)
+  if (!loggedinUser) return res.status(401).send('cannot delete car')
+
   const bugId = req.params.bugId
   console.log(bugId)
   bugService
-    .remove(bugId)
+    .remove(bugId,loggedinUser)
     .then((bug) => {
       res.send(bug)
     })
@@ -106,7 +111,7 @@ app.delete('/api/bug/:bugId', (req, res) => {
     })
 })
 
-// USERS API
+//======================================= USER API==========================
 
 app.get('/api/user/', (req, res) => {
   userService.query().then((users) => res.send(users))
@@ -154,7 +159,7 @@ app.post('/api/user', (req, res) => {
     })
 })
 
-//AUTH API
+//======================================= AUTH API==========================
 // login
 app.post('/api/auth/login', (req, res) => {
   const credentials = req.body
@@ -164,8 +169,8 @@ app.post('/api/auth/login', (req, res) => {
     .then((user) => {
       if (user) {
         const loginToken = authService.getLoginToken(user)
-            res.cookie('loginToken', loginToken)
-            res.send(user)
+        res.cookie('loginToken', loginToken)
+        res.send(user)
       }
     })
     .catch((err) => {
