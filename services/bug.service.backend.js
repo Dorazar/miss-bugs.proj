@@ -1,3 +1,4 @@
+import { Console } from 'console'
 import { loggerService } from './logger.service.js'
 import { makeId, readJsonFile, writeJsonFile } from './util.service.js'
 
@@ -62,6 +63,7 @@ function query(filterBy={},sort={},page={}) {
 }
 
 function save(bugToSave,loggedinUser) {
+  console.log('loggedinUser:',loggedinUser)
   if (bugToSave._id) {
     const idx = bugs.findIndex((bug) => bug._id === bugToSave._id)
 
@@ -90,14 +92,20 @@ function getById(bugId) {
   return Promise.resolve(bug)
 }
 
-function remove(bugId) {
+function remove(bugId,loggedinUser) {
 
   const bug = bugs.find((bug) => bug._id === bugId)
+  const bugIdx = bugs.findIndex((bug) => bug._id===bugId)
   if (!bug) {
     loggerService.error(`Couldnt find bug ${bugId} in bugService`)
     return Promise.reject(`Couldnt get bug`)
   }
-  bugs.splice(bug, 1)
+
+  if (bug.creator.username!==loggedinUser.username) {
+    return Promise.reject(`You cant remove others bugs!`)
+  }
+
+  bugs.splice(bugIdx, 1)
   _saveBugs()
   return Promise.resolve(bug)
 }
