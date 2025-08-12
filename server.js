@@ -144,7 +144,7 @@ app.delete('/api/user/:userId', (req, res) => {
 
 // USER ADD
 
-app.post('/api/user', (req, res) => {
+app.post('/api/user/', (req, res) => {
   const user = {
     username: req.body.username,
     fullname: req.body.fullname,
@@ -190,6 +190,7 @@ app.post('/api/auth/signup', (req, res) => {
     .add(credentials)
     .then((user) => {
       if (user) {
+        console.log(isAdmin)
         const loginToken = authService.getLoginToken(user)
         res.cookie('loginToken', loginToken)
         res.send(user)
