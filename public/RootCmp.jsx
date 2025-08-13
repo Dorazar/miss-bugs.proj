@@ -1,6 +1,9 @@
 const Router = ReactRouterDOM.BrowserRouter
 const { Route, Routes } = ReactRouterDOM
 
+const { useState, useEffect } = React
+import { authService } from './services/auth.service.frontend.js'
+
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
@@ -11,16 +14,17 @@ import { AboutUs } from './pages/AboutUs.jsx'
 import { LoginSignup } from './cmps/LoginSignup.jsx'
 
 export function App() {
+    const [loggedinUser,setLoggedinUser]=useState(authService.getLoggedinUser())
     return <Router>
         <div className="app-wrapper">
             <UserMsg />
-            <AppHeader />
+            <AppHeader loggedinUser={loggedinUser} setLoggedinUser={setLoggedinUser}/>
             <main className="container">
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/bug" element={<BugIndex />} />
                     <Route path="/bug/:bugId" element={<BugDetails />} />
-                    <Route path="/auth" element={<LoginSignup />} />
+                    <Route path="/auth" element={<LoginSignup loggedinUser={loggedinUser} setLoggedinUser={setLoggedinUser}/>} />
                     <Route path="/about" element={<AboutUs />} />
                 </Routes>
             </main>

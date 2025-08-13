@@ -11,27 +11,27 @@ export const authService = {
 }
 
 function login(user) {
-    axios.post(BASE_URL+'/login',user)
+   return axios.post(BASE_URL+'/login',user)
     .then(res=>res.data)
     .then(_setLoggedinUser)
 }
 
 function signup(user) {
-      axios.post(BASE_URL+'/signup',user)
+   return   axios.post(BASE_URL+'/signup',user)
     .then(res=>res.data)
     .then(_setLoggedinUser)
 }
 
 function logout() {
-    axios.post(BASE_URL+'/logout')
-    sessionStorage.removeItem('loggedInUser')
+    return axios.post(BASE_URL + '/logout')
+        .then(() => sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
 function _setLoggedinUser(user) {
-    const {_id,fullname,isAdmin} = user
+    const {_id,fullname,isAdmin,username} = user
    
-    const userToSave = {_id,fullname,isAdmin}
-    console.log(userToSave)
+    const userToSave = {_id,fullname,isAdmin,username}
+    // console.log('userToSave:',userToSave)
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER,JSON.stringify(userToSave))
     return userToSave
 }

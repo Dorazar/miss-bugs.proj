@@ -167,7 +167,7 @@ app.post('/api/user/', (req, res) => {
 // login
 app.post('/api/auth/login', (req, res) => {
   const credentials = req.body
-  console.log(credentials)
+  console.log('server:',credentials)
   authService
     .checkLogin(credentials)
     .then((user) => {
@@ -188,9 +188,8 @@ app.post('/api/auth/signup', (req, res) => {
   const credentials = req.body
   userService
     .add(credentials)
-    .then((user) => {
+    .then(user => {
       if (user) {
-        console.log(isAdmin)
         const loginToken = authService.getLoginToken(user)
         res.cookie('loginToken', loginToken)
         res.send(user)
